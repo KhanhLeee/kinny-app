@@ -1,4 +1,4 @@
-package com.sinhvien.kinny;
+package Models;
 
 public class NguoiDung {
 

@@ -142,7 +142,7 @@
         app:layout_constraintTop_toTopOf="@+id/img_target1" />
 
     <TextView
-        android:id="@+id/tv_main_starWeight4"
+        android:id="@+id/tv_main_starD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -168,7 +168,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_main_starWeight" />
 
     <TextView
-        android:id="@+id/tv_main_tgBMI2"
+        android:id="@+id/tv_main_tgBMI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="7dp"

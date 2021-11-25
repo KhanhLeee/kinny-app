@@ -1,4 +1,4 @@
-package com.sinhvien.kinny;
+package Models;
 
 import android.content.Context;
 import android.content.SharedPreferences;

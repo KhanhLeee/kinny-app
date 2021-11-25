@@ -1,4 +1,4 @@
-package com.sinhvien.kinny;
+package Database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -78,7 +81,6 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, TEN_DATABASE, null, 1);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TAO_BANG_NGUOIDUNG);
@@ -93,7 +95,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_MUCTIEU);
     }
 
+
     //Cac phuong thuc su dung database
+    //NguoiDung
     public Boolean themNguoiDung(String sdt, String matkhau) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -159,9 +163,31 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor layTatcaDuLieu(String sdt) {
+    public Cursor layTatcaDuLieuNguoiDung(String sdt) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("Select * from " + TEN_BANG_NGUOIDUNG + " where " + COT_SODIENTHOAI + " = ?", new String[] {sdt});
+
+        return cursor;
+    }
+
+    //MucTieu
+    public Boolean themMucTieu(String sdt, double cannangMT, String Ngaybatdau, String NgayKetThuc) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COT_CANNANGMT, cannangMT);
+        contentValues.put(COT_NGATBATDAU, Ngaybatdau);
+        contentValues.put(COT_NGAYTKETTHUC, NgayKetThuc);
+        contentValues.put(COT_SODIENTHOAI, sdt);
+        long ketqua = myDB.insert(TEN_BANG_MUCTIEU, null, contentValues);
+        if(ketqua == -1) return false;
+        else{
+            return true;
+        }
+    }
+
+    public Cursor layMucTieuNguoidung(String sdt) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("Select * from " + TEN_BANG_MUCTIEU + " where " + COT_SODIENTHOAI + " = ?", new String[] {sdt});
 
         return cursor;
     }

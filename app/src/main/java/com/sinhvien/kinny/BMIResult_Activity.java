@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import Database.DBHelper;
+import Models.NguoiDung;
+import Models.Session;
 
 public class BMIResult_Activity extends AppCompatActivity {
 
@@ -26,9 +29,19 @@ public class BMIResult_Activity extends AppCompatActivity {
 
         db = new DBHelper(this);
         session = new Session(this);
-        bmi = findViewById(R.id.tv_bmiResult);
+        bmi = findViewById(R.id.tv_bmi);
         danhgiaBMI = findViewById(R.id.tv_bmiTest);
         loikhuyen = findViewById(R.id.tv_advice);
+
+       double tinhBMI = tinhBMI();
+       if(tinhBMI != 0.0)
+       {
+
+           bmi.setText(String.valueOf(String.format("%,.2f",tinhBMI)));
+       }
+       else{
+           Toast.makeText(this, "Cannot calculate BMI", Toast.LENGTH_SHORT).show();
+       }
 
         btn_setTarget = findViewById(R.id.btn_setTarget);
         btn_setTarget.setOnClickListener(new View.OnClickListener() {
@@ -42,8 +55,8 @@ public class BMIResult_Activity extends AppCompatActivity {
     }
 
     @SuppressLint("Range")
-    public void layDuLieuNguoiDung () {
-        Cursor cursor = db.layTatcaDuLieu(session.laySDT());
+    public NguoiDung layDuLieuNguoiDung () {
+        Cursor cursor = db.layTatcaDuLieuNguoiDung(session.laySDT());
         
         if(cursor != null) {
             while(cursor.moveToNext()) {
@@ -51,11 +64,21 @@ public class BMIResult_Activity extends AppCompatActivity {
                 
                 nguoiDung.set_cannangbandau(Double.parseDouble(cursor.getString(cursor.getColumnIndex(db.COT_CANNANGBD))));
                 nguoiDung.set_chieucao(Double.parseDouble(cursor.getString(cursor.getColumnIndex(db.COT_CHIEUCAO))));
+
+                return nguoiDung;
             }
         }
+        return null;
     }
 
-    public Double tinhBMI() {
-
+    public Double tinhBMI(){
+        NguoiDung nguoiDung1 = layDuLieuNguoiDung();
+        if(nguoiDung1 != null){
+            double cannang = nguoiDung1.get_cannangbandau();
+            double chieucao = nguoiDung1.get_chieucao()/100;
+            double bmi = cannang/(chieucao*chieucao);
+            return bmi;
+        }
+        return 0.0;
     }
 }

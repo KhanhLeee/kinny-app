@@ -9,17 +9,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
+import Database.DBHelper;
+import Models.Session;
 
 public class TargetWeight_Activity extends AppCompatActivity {
 
     Button btn_getStarted;
     EditText txt_tgW;
     EditText txt_tgD;
+    Session session;
+    DBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,8 @@ public class TargetWeight_Activity extends AppCompatActivity {
         btn_getStarted = findViewById(R.id.btn_getStarted);
         txt_tgW = findViewById(R.id.txt_targetWeight);
         txt_tgD = findViewById(R.id.txt_targetDate);
+        session = new Session(this);
+        dbHelper = new DBHelper(this);
 
         txt_tgD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +45,23 @@ public class TargetWeight_Activity extends AppCompatActivity {
         btn_getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tgW = txt_tgW.getText().toString();
-                String tgD = txt_tgD.getText().toString();
+                String cannangMT = txt_tgW.getText().toString();
+                String ngayMucTieu = txt_tgD.getText().toString();
+                String ngayBatDau = themNgayBatDau();
+
+                if(cannangMT.equals("") || ngayMucTieu.equals("")){
+                    Toast.makeText(TargetWeight_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Boolean themMucTieu = dbHelper.themMucTieu(session.laySDT(), Double.parseDouble(cannangMT), ngayBatDau, ngayMucTieu);
+                    if(themMucTieu == true){
+                        Toast.makeText(TargetWeight_Activity.this, "Set target succesfully!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(TargetWeight_Activity.this, "Set target failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
                 Intent it_main= new Intent(TargetWeight_Activity.this, MainActivity.class);
                 startActivity(it_main);
             }
@@ -62,6 +83,18 @@ public class TargetWeight_Activity extends AppCompatActivity {
             }
         }, nam, thang, ngay);
         datePickerDialog.show();
+    }
+
+
+    public String themNgayBatDau() {
+        Calendar calendar = Calendar.getInstance();
+        int ngay = calendar.get(Calendar.DATE);
+        int thang = calendar.get(Calendar.MONTH);
+        int nam = calendar.get(Calendar.YEAR);
+        calendar.set(nam, thang, ngay);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String ngayBatDau = simpleDateFormat.format(calendar.getTime());
+        return ngayBatDau;
     }
 
 }
