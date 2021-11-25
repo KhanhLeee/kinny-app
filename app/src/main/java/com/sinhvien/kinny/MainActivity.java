@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView tv_main_tgW;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img_Home;
     ImageView img_BMICal;
     ImageView img_User;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

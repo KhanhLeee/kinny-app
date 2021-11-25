@@ -21,49 +21,19 @@
         app:srcCompat="@drawable/bmiresult_scale" />
 
     <Button
-        android:id="@+id/btn_weightLoss"
+        android:id="@+id/btn_setTarget"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="252dp"
         android:background="@drawable/button"
         android:fontFamily="@font/regular"
         android:letterSpacing="0.2"
-        android:text="Weight loss"
+        android:text="Set your target"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_wKeep"
-        android:layout_width="250dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/regular"
-        android:letterSpacing="0.2"
-        android:text="Keep weight"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_weightLoss" />
-
-    <Button
-        android:id="@+id/btn_wGain"
-        android:layout_width="250dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/regular"
-        android:letterSpacing="0.2"
-        android:text="Weight gain"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_wKeep" />
+        app:layout_constraintTop_toTopOf="@+id/img_scale" />
 
     <TextView
         android:id="@+id/tv_bmiTest"

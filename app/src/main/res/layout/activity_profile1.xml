@@ -6,17 +6,39 @@
     android:layout_height="match_parent"
     android:background="@drawable/pf1_pf2_bg">
 
+    <EditText
+        android:id="@+id/et_height"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="102dp"
+        android:backgroundTint="@color/colorDarkBLue"
+        android:ems="10"
+        android:fontFamily="@font/regular"
+        android:hint="Your height"
+        android:inputType="textPersonName"
+        android:letterSpacing="0.2"
+        android:minHeight="48dp"
+        android:textColor="@color/colorDarkBLue"
+        android:textColorHint="@color/colorDarkBLue"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
     <Button
         android:id="@+id/btn_next"
-        android:layout_width="230dp"
+        android:layout_width="190dp"
         android:layout_height="48dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginTop="500dp"
         android:background="@drawable/button"
         android:fontFamily="@font/regular"
         android:letterSpacing="0.2"
         android:text="Next"
-        android:textSize="15dp"
         android:textAllCaps="false"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +49,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="102dp"
-        android:layout_marginTop="219dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="100dp"
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
@@ -40,6 +62,7 @@
         android:textColorHint="@color/colorDarkBLue"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +71,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="102dp"
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
@@ -65,11 +88,32 @@
         app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
     <EditText
+        android:id="@+id/et_weight"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="99dp"
+        android:backgroundTint="@color/colorDarkBLue"
+        android:ems="10"
+        android:fontFamily="@font/regular"
+        android:hint="Your weight"
+        android:inputType="textPersonName"
+        android:letterSpacing="0.2"
+        android:minHeight="48dp"
+        android:textColor="@color/colorDarkBLue"
+        android:textColorHint="@color/colorDarkBLue"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_height" />
+
+    <EditText
         android:id="@+id/et_gender"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="101dp"
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
@@ -82,8 +126,9 @@
         android:textColorHint="@color/colorDarkBLue"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_age" />
+        app:layout_constraintTop_toBottomOf="@+id/et_weight" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -109,5 +154,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

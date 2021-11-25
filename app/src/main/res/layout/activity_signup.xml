@@ -36,7 +36,7 @@
         app:srcCompat="@drawable/form_signup" />
 
     <EditText
-        android:id="@+id/et_email_signup"
+        android:id="@+id/et_phoneNumber_signup"
         android:layout_width="233dp"
         android:layout_height="50dp"
         android:layout_marginStart="95dp"
@@ -45,7 +45,7 @@
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
         android:fontFamily="@font/regular"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         android:textColorHint="@color/colorDarkBLue"
         android:hint="Enter your email"
         android:textColor="@color/colorDarkBLue"
@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email_signup" />
+        app:layout_constraintTop_toBottomOf="@+id/et_phoneNumber_signup" />
 
     <EditText
         android:id="@+id/et_password_signup"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email_signup" />
+        app:layout_constraintTop_toBottomOf="@+id/et_phoneNumber_signup" />
 
     <TextView
         android:id="@+id/textView2"
