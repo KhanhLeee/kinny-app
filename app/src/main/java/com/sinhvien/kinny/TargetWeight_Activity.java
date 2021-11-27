@@ -52,6 +52,9 @@ public class TargetWeight_Activity extends AppCompatActivity {
                 if(cannangMT.equals("") || ngayMucTieu.equals("")){
                     Toast.makeText(TargetWeight_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 }
+                else if (Double.parseDouble(cannangMT) < 20 || Double.parseDouble(cannangMT) > 200){
+                    Toast.makeText(TargetWeight_Activity.this, "20kg <= Your weight <= 200kg", Toast.LENGTH_SHORT).show();
+                }
                 else {
                     Boolean themMucTieu = dbHelper.themMucTieu(session.laySDT(), Double.parseDouble(cannangMT), ngayBatDau, ngayMucTieu);
                     if(themMucTieu == true){
@@ -82,6 +85,7 @@ public class TargetWeight_Activity extends AppCompatActivity {
                 txt_tgD.setText(simpleDateFormat.format(calendar.getTime()));
             }
         }, nam, thang, ngay);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()- 1000);
         datePickerDialog.show();
     }
 

@@ -198,4 +198,60 @@
         app:srcCompat="@drawable/btn_userdetails2"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start weight"
+        android:textSize="10dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/colorDarkBLue"
+        app:layout_constraintEnd_toEndOf="@+id/txt_tg_StarW"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toStartOf="@+id/txt_tg_StarW"
+        app:layout_constraintTop_toTopOf="@+id/txt_tg_StarW" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start time"
+        android:textSize="10dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/colorDarkBLue"
+        app:layout_constraintEnd_toEndOf="@+id/txt_tg_StartD"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toStartOf="@+id/txt_tg_StartD"
+        app:layout_constraintTop_toTopOf="@+id/txt_tg_StartD" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target weight"
+        android:textSize="10dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/colorDarkBLue"
+        app:layout_constraintEnd_toEndOf="@+id/txt_tg_TgW"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txt_tg_TgW"
+        app:layout_constraintTop_toTopOf="@+id/txt_tg_TgW" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target time"
+        android:textSize="10dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/colorDarkBLue"
+        app:layout_constraintEnd_toEndOf="@+id/txt_user_TgDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txt_user_TgDate"
+        app:layout_constraintTop_toTopOf="@+id/txt_user_TgDate" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

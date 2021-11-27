@@ -1,7 +1,9 @@
 package com.sinhvien.kinny;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ public class UserDetails_Activity extends AppCompatActivity {
     ImageButton btn_us_tgW;
     Button btn_logOut;
     ImageButton btn_backHome;
+    DialogInterface dialogInterface;
     AlertConFirmLogOut alertConFirmLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,36 @@ public class UserDetails_Activity extends AppCompatActivity {
         btn_logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it_logIn = new Intent(UserDetails_Activity.this, Login_Activity.class);
-                startActivity(it_logIn);
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserDetails_Activity.this);
+
+                builder.setTitle("Alert Dialog");
+
+                builder.setMessage("Are you sure to log out ?");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Intent it_logIn = new Intent(UserDetails_Activity.this, Login_Activity.class);
+                        startActivity(it_logIn);
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

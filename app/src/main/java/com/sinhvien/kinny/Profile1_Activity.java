@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import Database.DBHelper;
@@ -15,8 +17,10 @@ import Models.Session;
 
 public class Profile1_Activity extends AppCompatActivity {
 
-    EditText et_name, et_age, et_weight, et_height, et_gender;
+    EditText et_name, et_age, et_weight, et_height;
     Button btn_next;
+    RadioGroup radioGroup;
+    RadioButton rbMale_Female;
     Session session;
     DBHelper db;
     @Override
@@ -28,7 +32,7 @@ public class Profile1_Activity extends AppCompatActivity {
         et_age=findViewById(R.id.et_age);
         et_height = findViewById(R.id.et_height);
         et_weight = findViewById(R.id.et_weight);
-        et_gender=findViewById(R.id.et_gender);
+        radioGroup = findViewById(R.id.radioGroup);
 
         session = new Session(this);
         db = new DBHelper(this);
@@ -41,11 +45,23 @@ public class Profile1_Activity extends AppCompatActivity {
                 String tuoi = et_age.getText().toString();
                 String chieucao = et_height.getText().toString();
                 String cannang = et_weight.getText().toString();
-                String gioitinh = et_gender.getText().toString();
+
+                int selected = radioGroup.getCheckedRadioButtonId();
+                rbMale_Female = findViewById(selected);
+                String gioitinh = rbMale_Female.getText().toString();
 
                 //Kiem tra nhap thong tin
-                if(ten.equals("") || tuoi.equals("") || chieucao.equals("") || cannang.equals("") || gioitinh.equals("")){
+                if(ten.equals("") || tuoi.equals("") || chieucao.equals("") || cannang.equals("") ){
                     Toast.makeText(Profile1_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                }
+                else if (Double.parseDouble(chieucao) < 120 || (Double.parseDouble(chieucao) > 200)){
+                    Toast.makeText(Profile1_Activity.this, "120cm < Your height < 200cm", Toast.LENGTH_SHORT).show();
+                }
+                else if (Integer.parseInt(tuoi) < 6 || Integer.parseInt(tuoi) >100  ){
+                    Toast.makeText(Profile1_Activity.this, "6 < Your age < 100", Toast.LENGTH_SHORT).show();
+                }
+                else if (Double.parseDouble(cannang) < 20 || Double.parseDouble(cannang) >200){
+                    Toast.makeText(Profile1_Activity.this, "20kg <= Your weight <= 200kg", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Boolean luuThongTinNguoiDung = db.luuThongTinNguoiDung(ten, Integer.parseInt(tuoi), gioitinh,

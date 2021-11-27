@@ -34,10 +34,32 @@ public class BMIResult_Activity extends AppCompatActivity {
         loikhuyen = findViewById(R.id.tv_advice);
 
        double tinhBMI = tinhBMI();
-       if(tinhBMI != 0.0)
+       if(tinhBMI <= 18.5)
        {
 
            bmi.setText(String.valueOf(String.format("%,.2f",tinhBMI)));
+            danhgiaBMI.setText("Light weight");
+           loikhuyen.setText("Advice: You should gain weight.");
+       }
+       else if (tinhBMI > 18.5 && tinhBMI <= 25){
+           bmi.setText(String.valueOf(String.format("%,.2f",tinhBMI)));
+           danhgiaBMI.setText("Normal weight");
+           loikhuyen.setText("Advice: You should keep your weight.");
+       }
+       else if (tinhBMI > 25 && tinhBMI <=30 ){
+           bmi.setText(String.valueOf(String.format("%,.2f",tinhBMI)));
+           danhgiaBMI.setText("Overweight");
+           loikhuyen.setText("Advice: You should lose weight.");
+       }
+       else if (tinhBMI > 30 && tinhBMI <=40 ){
+           bmi.setText(String.valueOf(String.format("%,.2f",tinhBMI)));
+           danhgiaBMI.setText("Fat 1");
+           loikhuyen.setText("Advice: You should lose weight.");
+       }
+       else if (tinhBMI > 40 ){
+           bmi.setText(String.valueOf(String.format("%,.2f",tinhBMI)));
+           danhgiaBMI.setText("Fat 2");
+           loikhuyen.setText("Advice: You should lose weight.");
        }
        else{
            Toast.makeText(this, "Cannot calculate BMI", Toast.LENGTH_SHORT).show();
