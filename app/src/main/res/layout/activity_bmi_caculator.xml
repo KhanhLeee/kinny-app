@@ -15,7 +15,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/regular"
-        android:text="kg"
+        android:text="cm"
         android:textColor="@color/colorDarkBLue"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="@+id/txt_cal_Height"
@@ -28,7 +28,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/regular"
-        android:text="cm"
+        android:text="kg"
         android:textColor="@color/colorDarkBLue"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="@+id/txt_cal_Weight"
@@ -54,7 +54,7 @@
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
         android:fontFamily="@font/regular"
-        android:hint="Your Height"
+        android:hint="Your Weight"
         android:inputType="textPersonName"
         android:letterSpacing="0.2"
         android:textColor="@color/colorDarkBLue"
@@ -70,41 +70,21 @@
         android:layout_width="350dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="31dp"
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
         android:fontFamily="@font/regular"
-        android:hint="Your Weight"
+        android:hint="Your Height"
         android:inputType="textPersonName"
         android:letterSpacing="0.2"
         android:textColor="@color/colorDarkBLue"
         android:textColorHint="@color/colorDarkBLue"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_cal_Height" />
-
-    <EditText
-        android:id="@+id/txt_cal_Gender"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="31dp"
-        android:backgroundTint="@color/colorDarkBLue"
-        android:ems="10"
-        android:fontFamily="@font/regular"
-        android:hint="Your Gender"
-        android:inputType="textPersonName"
-        android:letterSpacing="0.2"
-        android:textColor="@color/colorDarkBLue"
-        android:textColorHint="@color/colorDarkBLue"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_cal_Weight" />
 
     <TextView
         android:id="@+id/tv_BMI"
@@ -128,7 +108,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/regular"
         android:letterSpacing="0.2"
-        android:text="Normal Weight"
+        android:text="..."
         android:textColor="@color/colorDarkBLue"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -143,13 +123,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="162dp"
         android:fontFamily="@font/bold"
-        android:text="20.4"
+        android:text="0.0"
         android:textColor="@color/colorDarkBLue"
         android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_calBMI" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -162,15 +142,15 @@
         app:srcCompat="@drawable/scales" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_calBMI"
         android:layout_width="180dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/button"
         android:text="Caculate BMI"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_cal_Gender" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_cal_Weight" />
 
     <ImageView
         android:id="@+id/imageView12"

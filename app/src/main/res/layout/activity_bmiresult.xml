@@ -39,15 +39,14 @@
         android:id="@+id/tv_bmiTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="Normal weight"
-        android:letterSpacing="0.2"
+        android:layout_marginTop="332dp"
         android:fontFamily="@font/regular"
-        android:textSize="20dp"
+        android:letterSpacing="0.2"
+        android:text="Normal weight"
         android:textColor="@color/colorDarkBLue"
+        android:textSize="20dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

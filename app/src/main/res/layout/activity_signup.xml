@@ -47,7 +47,7 @@
         android:fontFamily="@font/regular"
         android:inputType="numberSigned"
         android:textColorHint="@color/colorDarkBLue"
-        android:hint="Enter your email"
+        android:hint="Enter your phone number"
         android:textColor="@color/colorDarkBLue"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
