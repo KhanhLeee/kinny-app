@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         tv_main_tgD = findViewById(R.id.tv_main_tgD);
         tv_startW = findViewById(R.id.tv_main_starWeight);
         tv_startD = findViewById(R.id.tv_main_starD);
-
         tv_startBMI = findViewById(R.id.tv_main_startBMI);
         tv_tgBMI = findViewById(R.id.tv_main_tgBMI);
+
         session = new Session(this);
         db = new DBHelper(this);
         hienthiDuLieu();
@@ -76,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
        if(nguoiDung1 != null){
            tv_startW.setText(String.valueOf(nguoiDung1.get_cannangbandau()));
-           tv_startBMI.setText(String.valueOf("BMI: " + String.format("%,.2f",tinhBMIBanDau())));
+           tv_startBMI.setText(tinhBMIBanDau());
        }
        if(mucTieu1 != null) {
            tv_main_tgW.setText(String.valueOf(mucTieu1.get_cannangMT()));
            tv_startD.setText(mucTieu1.get_ngayBatDau());
            tv_main_tgD.setText(mucTieu1.get_ngayKetThuc());
-//           tv_tgBMI.setText(String.valueOf(tinhBMIMucTieu()));
+           tv_tgBMI.setText(tinhBMIMucTieu());
        }
 
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if(cursor != null) {
             while(cursor.moveToNext()) {
                 NguoiDung nguoiDung = new NguoiDung();
-
+                
                 nguoiDung.set_cannangbandau(Double.parseDouble(cursor.getString(cursor.getColumnIndex(db.COT_CANNANGBD))));
                 nguoiDung.set_chieucao(Double.parseDouble(cursor.getString(cursor.getColumnIndex(db.COT_CHIEUCAO))));
 
@@ -105,28 +105,28 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public Double tinhBMIBanDau(){
+    public String tinhBMIBanDau(){
         NguoiDung nguoiDung1 = layDuLieuNguoiDung();
         if(nguoiDung1 != null){
             double cannang = nguoiDung1.get_cannangbandau();
             double chieucao = nguoiDung1.get_chieucao()/100;
             double bmi = cannang/(chieucao*chieucao);
-            return bmi;
+            return String.valueOf("BMI " + String.format("%,.2f",bmi));
         }
-        return 0.0;
+        return null;
     }
 
-//    public Double tinhBMIMucTieu(){
-//        NguoiDung nguoiDung1 = layDuLieuNguoiDung();
-//        MucTieu mucTieu1 = layMucTieuNguoiDung();
-//        if(nguoiDung1 != null && mucTieu1 != null) {
-//            double cannang = mucTieu1.get_cannangMT();
-//            double chieucao = nguoiDung1.get_chieucao()/100;
-//            double bmi = cannang/(chieucao*chieucao);
-//            return bmi;
-//        }
-//        return 0.0;
-//    }
+    public String tinhBMIMucTieu(){
+        NguoiDung nguoiDung1 = layDuLieuNguoiDung();
+        MucTieu mucTieu1 = layMucTieuNguoiDung();
+        if(nguoiDung1 != null && mucTieu1 != null) {
+            double cannang = mucTieu1.get_cannangMT();
+            double chieucao = nguoiDung1.get_chieucao()/100;
+            double bmi = cannang/(chieucao*chieucao);
+            return String.valueOf("BMI " + String.format("%,.2f",bmi));
+        }
+        return null;
+    }
 
     @SuppressLint("Range")
     public MucTieu layMucTieuNguoiDung() {
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         if(cursor != null) {
             while (cursor.moveToNext()) {
                 MucTieu mucTieu = new MucTieu();
-//                mucTieu.set_cannangMT(Double.parseDouble(cursor.getString(cursor.getColumnIndex(db.COT_CANNANGMT))));
+                mucTieu.set_cannangMT(Double.parseDouble(cursor.getString(cursor.getColumnIndex(db.COT_CANNANGMT))));
                 mucTieu.set_ngayBatDau(cursor.getString(cursor.getColumnIndex(db.COT_NGATBATDAU)));
                 mucTieu.set_ngayKetThuc(cursor.getString(cursor.getColumnIndex(db.COT_NGAYTKETTHUC)));
                 return mucTieu;

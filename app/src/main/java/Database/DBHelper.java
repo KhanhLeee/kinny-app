@@ -6,11 +6,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import Models.MucTieu;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -137,17 +140,25 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase myDB = this.getWritableDatabase();
 
         Cursor cursor = myDB.rawQuery("Select " + COT_TEN + " from "+ TEN_BANG_NGUOIDUNG
-                +" where " + COT_SODIENTHOAI + " = ?", new String[] {sdt});
+                +" where " + COT_SODIENTHOAI + " = ?" , new String[] {sdt});
 
+        String nguoiDungMoi = "";
 
-        if(cursor.getColumnIndex(COT_TEN) > 0){
-            return false;
+        if (cursor.moveToFirst()){
+            do{
+                String data = cursor.getString(cursor.getColumnIndex("_ten"));
+
+                nguoiDungMoi = data;
+            } while(cursor.moveToNext());
         }
-        else
+        cursor.close();
+        if (nguoiDungMoi == null){
             return true;
+        }
+        return false;
     }
 
-    public Boolean luuThongTinNguoiDung(String ten, int tuoi, String gioitinh, double chieucao, double cannang, String sdt ) {
+    public Boolean capnhatThongTinNguoiDung(String ten, int tuoi, String gioitinh, double chieucao, double cannang, String sdt ) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COT_TEN, ten);
@@ -171,14 +182,24 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //MucTieu
-    public Boolean themMucTieu(String sdt, double cannangMT, String Ngaybatdau, String NgayKetThuc) {
+    public Boolean themMucTieu(String sdt) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COT_SODIENTHOAI, sdt);
+        long ketqua = myDB.insert(TEN_BANG_MUCTIEU, null, contentValues);
+        if(ketqua == -1) return false;
+        else{
+            return true;
+        }
+    }
+
+    public Boolean capnhatMucTieu(String sdt, double cannangMT, String ngayBatDau, String ngayKetThuc) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COT_CANNANGMT, cannangMT);
-        contentValues.put(COT_NGATBATDAU, Ngaybatdau);
-        contentValues.put(COT_NGAYTKETTHUC, NgayKetThuc);
-        contentValues.put(COT_SODIENTHOAI, sdt);
-        long ketqua = myDB.insert(TEN_BANG_MUCTIEU, null, contentValues);
+        contentValues.put(COT_NGATBATDAU, ngayBatDau);
+        contentValues.put(COT_NGAYTKETTHUC, ngayKetThuc);
+        long ketqua = myDB.update(TEN_BANG_MUCTIEU, contentValues, COT_SODIENTHOAI + " = ?" , new String[] {sdt});
         if(ketqua == -1) return false;
         else{
             return true;

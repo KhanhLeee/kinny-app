@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import Models.HWAdapter;
+import Models.HistoryWeight;
 
 public class AddWeight_Activity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class AddWeight_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_weight);
 
         listView = findViewById(R.id.listView);
+        arrayList = new ArrayList<HistoryWeight>();
         hwAdapter = new HWAdapter(AddWeight_Activity.this, R.layout.item_listview, arrayList);
         listView.setAdapter(hwAdapter);
 

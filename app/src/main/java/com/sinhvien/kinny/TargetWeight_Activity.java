@@ -46,19 +46,25 @@ public class TargetWeight_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String cannangMT = txt_tgW.getText().toString();
-                String ngayMucTieu = txt_tgD.getText().toString();
+                String ngayKetThuc = txt_tgD.getText().toString();
                 String ngayBatDau = themNgayBatDau();
 
-                if(cannangMT.equals("") || ngayMucTieu.equals("")){
+                if(cannangMT.equals("") || ngayKetThuc.equals("")){
                     Toast.makeText(TargetWeight_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Boolean themMucTieu = dbHelper.themMucTieu(session.laySDT(), Double.parseDouble(cannangMT), ngayBatDau, ngayMucTieu);
+                    Boolean themMucTieu = dbHelper.themMucTieu(session.laySDT());
                     if(themMucTieu == true){
-                        Toast.makeText(TargetWeight_Activity.this, "Set target succesfully!", Toast.LENGTH_SHORT).show();
+                        Boolean capnhatMucTieu = dbHelper.capnhatMucTieu(session.laySDT(),Double.parseDouble(cannangMT), ngayBatDau, ngayKetThuc);
+                        if(capnhatMucTieu == true) {
+                            Toast.makeText(TargetWeight_Activity.this, "Set target succesfully!", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(TargetWeight_Activity.this, "Set target failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else{
-                        Toast.makeText(TargetWeight_Activity.this, "Set target failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TargetWeight_Activity.this, "Set target failed !!!!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

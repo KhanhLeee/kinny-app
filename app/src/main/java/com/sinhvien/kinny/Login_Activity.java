@@ -50,13 +50,15 @@ public class Login_Activity extends AppCompatActivity {
                 }
                 else {
                     Boolean kiemtraSDTMatKhau = db.kiemtraSDTMatKhau(sdt, matkhau);
-                    if(kiemtraSDTMatKhau == true){
+                    if(kiemtraSDTMatKhau){
                         Toast.makeText(Login_Activity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
 
                         session.setSDT(sdt);
 
                         Boolean kiemtraNguoiDungMoi = db.kiemtraNguoiDungMoi(sdt);
-                        if(kiemtraNguoiDungMoi == true){
+
+
+                        if(kiemtraNguoiDungMoi) {
                             Intent it_profile1= new Intent(Login_Activity.this, Profile1_Activity.class);
                             startActivity(it_profile1);
                         }

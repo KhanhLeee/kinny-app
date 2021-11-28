@@ -48,7 +48,7 @@ public class Profile1_Activity extends AppCompatActivity {
                     Toast.makeText(Profile1_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Boolean luuThongTinNguoiDung = db.luuThongTinNguoiDung(ten, Integer.parseInt(tuoi), gioitinh,
+                    Boolean luuThongTinNguoiDung = db.capnhatThongTinNguoiDung(ten, Integer.parseInt(tuoi), gioitinh,
                             Double.parseDouble(chieucao), Double.parseDouble(cannang), session.laySDT());
 
                     if(luuThongTinNguoiDung == true){
