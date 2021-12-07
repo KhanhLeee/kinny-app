@@ -13,10 +13,11 @@ import androidx.annotation.Nullable;
 import java.util.Calendar;
 import java.util.Date;
 
+import Models.HistoryWeight;
 import Models.MucTieu;
 
 public class DBHelper extends SQLiteOpenHelper {
-
+    SQLiteDatabase database;
 
     //TEND DATABASE
     private static final String TEN_DATABASE = "db_QuanLiCanNang";
@@ -42,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COT_NGAYTHEM = "_ngaythem";
 
     //CAC COT CUA MUCTIEU
-    public static final String COT_ = "_bmi";
+
     public static final String COT_CANNANGMT = "_cannangmuctieu";
     public static final String COT_NGATBATDAU = "_ngaybatdau";
     public static final String COT_NGAYTKETTHUC = "_ngayketthuc";
@@ -174,6 +175,21 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean capnhatThongTinUserDail(String ten, int tuoi, String gioitinh, double chieucao, String sdt ) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COT_TEN, ten);
+        contentValues.put(COT_TUOI, tuoi);
+        contentValues.put(COT_GIOITINH, gioitinh);
+        contentValues.put(COT_CHIEUCAO, chieucao);
+
+        long ketqua = myDB.update(TEN_BANG_NGUOIDUNG, contentValues, COT_SODIENTHOAI + " = ?" , new String[] {sdt});
+        if(ketqua == -1) return false;
+        else{
+            return true;
+        }
+    }
+
     public Cursor layTatcaDuLieuNguoiDung(String sdt) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("Select * from " + TEN_BANG_NGUOIDUNG + " where " + COT_SODIENTHOAI + " = ?", new String[] {sdt});
@@ -205,11 +221,57 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+    // chưa cập nhật lại được cân nặng bắt đầu
+    public Boolean capnhatMucTieu_TargetWeight(String sdt, double cannangBD, double cannangMT, String ngayBatDau, String ngayKetThuc) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COT_CANNANGBD, cannangBD);
+        contentValues.put(COT_CANNANGMT, cannangMT);
+        contentValues.put(COT_NGATBATDAU, ngayBatDau);
+        contentValues.put(COT_NGAYTKETTHUC, ngayKetThuc);
+        long ketqua = myDB.update(TEN_BANG_MUCTIEU, contentValues, COT_SODIENTHOAI + " = ?", new String[]{sdt});
+        long ketqua2 = myDB.update(TEN_BANG_NGUOIDUNG, contentValues, COT_SODIENTHOAI + " = ?", new String[]{sdt});
+        if (ketqua == -1 ) return false;
+        else {
+            return true;
+        }
 
+    }
     public Cursor layMucTieuNguoidung(String sdt) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("Select * from " + TEN_BANG_MUCTIEU + " where " + COT_SODIENTHOAI + " = ?", new String[] {sdt});
 
         return cursor;
     }
+
+
+    // phần add weight
+    public Cursor layDuLieuCanNang(String sdt) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("Select * from " + TEN_BANG_CANNANG + " where " + COT_SODIENTHOAI + " = ?", new String[] {sdt});
+
+        return cursor;
+    }
+
+    // phần add weight
+    public long themCanNang(HistoryWeight historyWeight, String sdt) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COT_SODIENTHOAI, sdt);
+        values.put(COT_CANNANG, historyWeight.getWeight());
+        values.put(COT_BMI, historyWeight.getBmi());
+        values.put(COT_NGAYTHEM, historyWeight.getDate());
+        return myDB.insert(TEN_BANG_CANNANG, null, values);
+
+    }
+    public Cursor layDuLieuCanNangMoiNhat(String sdt) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("Select * from " + TEN_BANG_CANNANG + " where " + COT_SODIENTHOAI +" = ?"
+                + " and " + COT_ID + " = (Select max(" + COT_ID + ") from " + TEN_BANG_CANNANG + ")", new String[] {sdt});
+
+        return cursor;
+    }
+
+
+
 }

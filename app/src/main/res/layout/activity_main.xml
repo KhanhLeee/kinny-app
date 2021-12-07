@@ -248,22 +248,22 @@
         app:layout_constraintStart_toStartOf="@+id/img_circle"
         app:layout_constraintTop_toBottomOf="@+id/tv_currentWeight" />
 
-    <TextView
-        android:id="@+id/tv_currentDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:fontFamily="@font/regular"
-        android:text="03/11/2021"
-        android:textColor="@color/colorDarkBLue"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_currentBMI2" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_currentDate"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="55dp"-->
+<!--        android:fontFamily="@font/regular"-->
+<!--        android:text="03/11/2021"-->
+<!--        android:textColor="@color/colorDarkBLue"-->
+<!--        android:textSize="14dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_currentBMI2" />-->
 
     <TextView
-        android:id="@+id/tv_main_amountWeight"
+        android:id="@+id/tv_Main_StateGetWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -276,7 +276,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_currenBMITest" />
 
     <TextView
-        android:id="@+id/tv_main_amountWeightnb"
+        android:id="@+id/tv_Main_GetWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -289,7 +289,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <TextView
-        android:id="@+id/tv_main_amountProcessnb"
+        android:id="@+id/tv_Main_Process"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -302,7 +302,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
     <TextView
-        android:id="@+id/tv_main_amountProcess"
+        android:id="@+id/tv_Main_StateProcess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -359,5 +359,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_main_AddW"
         app:srcCompat="@drawable/main_btn_user" />
+
+    <TextClock
+        android:id="@+id/textclock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:format24Hour="d-M-yyyy"
+        android:textColor="@color/colorDarkBLue"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_circle"
+        app:layout_constraintEnd_toEndOf="@+id/img_circle"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/img_circle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

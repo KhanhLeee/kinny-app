@@ -1,8 +1,10 @@
 package com.sinhvien.kinny;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import Database.DBHelper;
 import Models.MucTieu;
@@ -23,6 +26,7 @@ public class UserDetails_Activity extends AppCompatActivity {
     Button btn_logOut, btn_save;
     ImageButton btn_backHome;
     AlertConFirmLogOut alertConFirmLogOut;
+    DialogInterface dialogInterface;
     EditText txt_ten, txt_tuoi, txt_,txt_gioitinh, txt_chieucao;
     Session session;
     DBHelper db;
@@ -35,6 +39,7 @@ public class UserDetails_Activity extends AppCompatActivity {
         txt_tuoi = findViewById(R.id.txt_user_Age);
         txt_gioitinh = findViewById(R.id.txt_user_Gender);
         txt_chieucao = findViewById(R.id.txt_user_Height);
+
         session = new Session(this);
         db = new DBHelper(this);
         hienthiChiTietNguoiDung();
@@ -43,6 +48,42 @@ public class UserDetails_Activity extends AppCompatActivity {
         btn_logOut = findViewById(R.id.btn_LogOut);
         btn_backHome = findViewById(R.id.btn_backHome1);
         btn_save = findViewById(R.id.btn_SaveUserdt);
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ten = txt_ten.getText().toString();
+                String tuoi = txt_tuoi.getText().toString();
+                String gioiTinh = txt_gioitinh.getText().toString();
+                String chieuCao = txt_chieucao.getText().toString();
+
+
+                //Kiem tra nhap thong tin
+                if(ten.equals("") || tuoi.equals("") || chieuCao.equals("") || gioiTinh.equals("") ){
+                    Toast.makeText(UserDetails_Activity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                }
+                else if (Double.parseDouble(chieuCao) < 120 || (Double.parseDouble(chieuCao) > 200)){
+                    Toast.makeText(UserDetails_Activity.this, "120cm < Your height < 200cm", Toast.LENGTH_SHORT).show();
+                }
+                else if (Integer.parseInt(tuoi) < 6 || Integer.parseInt(tuoi) >100  ){
+                    Toast.makeText(UserDetails_Activity.this, "6 < Your age < 100", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    Boolean luuThongTinNguoiDung = db.capnhatThongTinUserDail(ten, Integer.parseInt(tuoi), gioiTinh,
+                            Double.parseDouble(chieuCao), session.laySDT());
+
+                    if(luuThongTinNguoiDung){
+                        Toast.makeText(UserDetails_Activity.this, "Profile saved", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else{
+                        Toast.makeText(UserDetails_Activity.this, "Saving failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
 
         btn_us_tgW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +103,32 @@ public class UserDetails_Activity extends AppCompatActivity {
         btn_logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it_logIn = new Intent(UserDetails_Activity.this, Login_Activity.class);
-                startActivity(it_logIn);
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserDetails_Activity.this);
+
+                builder.setTitle("Alert Dialog");
+                builder.setMessage("Are you sure to log out ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Intent it_logIn = new Intent(UserDetails_Activity.this, Login_Activity.class);
+                        startActivity(it_logIn);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

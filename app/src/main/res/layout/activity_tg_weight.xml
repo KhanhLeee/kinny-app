@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/user_table" />
 
     <Button
-        android:id="@+id/btn_saveTgW"
+        android:id="@+id/btn_saveTgW2"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
 
@@ -52,7 +52,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_saveTgW" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_saveTgW2" />
 
     <EditText
         android:id="@+id/txt_user_TgDate"
@@ -138,7 +138,8 @@
         android:backgroundTint="@color/colorDarkBLue"
         android:ems="10"
         android:fontFamily="@font/regular"
-        android:inputType="textPersonName"
+        android:inputType="none"
+        android:editable="false"
         android:text="55"
         android:textColor="@color/colorDarkBLue"
         android:textSize="14dp"
